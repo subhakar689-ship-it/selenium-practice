@@ -67,23 +67,20 @@ public class BaseTest {
 	protected void setup() {
 //		System.setProperty("webdriver.chrome.driver", Constants.CHROME_DRIVER_PATH);
 		WebDriverManager.chromedriver().setup();
+
 		ChromeOptions ops = new ChromeOptions();
 		ops.addArguments("--headless=new");
 		ops.addArguments("--disable-gpu");
 		ops.addArguments("--window-size=1920,1080");
 
 		driver = new ChromeDriver(ops);
-		driver.manage().window().maximize();
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		WebDriverManager.chromedriver().clearDriverCache().setup();
-		System.out.println("SETUP START");
 
-		driver = new ChromeDriver(ops);
-
-		System.out.println("DRIVER CREATED = " + driver);
+		driver.manage().timeouts()
+				.implicitlyWait(Duration.ofSeconds(10));
 
 		WebDriverContext.setDriver(driver);
+
+		System.out.println("Driver Created Successfully");
 
 		System.out.println("DRIVER STORED");
 
